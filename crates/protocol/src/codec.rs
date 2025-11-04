@@ -25,17 +25,11 @@ pub struct BincodeCodec;
 
 impl MessageCodec for BincodeCodec {
     fn encode(&self, message: &Message) -> Result<Vec<u8>> {
-        bincode::serialize(message)
-            .map_err(|e| common::Error::SerializationError(
-                serde_json::Error::custom(e.to_string())
-            ))
+        Ok(bincode::serialize(message)?)
     }
 
     fn decode(&self, data: &[u8]) -> Result<Message> {
-        bincode::deserialize(data)
-            .map_err(|e| common::Error::SerializationError(
-                serde_json::Error::custom(e.to_string())
-            ))
+        Ok(bincode::deserialize(data)?)
     }
 }
 
