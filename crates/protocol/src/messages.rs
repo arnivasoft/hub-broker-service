@@ -1,4 +1,4 @@
-use common::{BranchId, VectorClock};
+use common::{BranchId, TenantId, VectorClock};
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -66,6 +66,7 @@ pub enum MessagePayload {
 /// Connect request from client
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ConnectRequest {
+    pub tenant_id: TenantId,
     pub branch_id: BranchId,
     pub api_key: String,
     pub version: String,

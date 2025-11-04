@@ -36,6 +36,7 @@ impl WebSocketClient {
             self.branch_id.clone(),
             None,
             MessagePayload::Connect(ConnectRequest {
+                tenant_id: self.tenant_id.clone(),
                 branch_id: self.branch_id.clone(),
                 api_key: self.api_key.clone(),
                 version: env!("CARGO_PKG_VERSION").to_string(),

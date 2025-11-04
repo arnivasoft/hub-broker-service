@@ -162,6 +162,7 @@ async fn handle_socket(socket: WebSocket, state: AppState) {
                                 // Authenticate
                                 match crate::auth::authenticate_branch(
                                     &state.storage,
+                                    &connect_req.tenant_id,
                                     &connect_req.branch_id,
                                     &connect_req.api_key,
                                 )

@@ -58,7 +58,7 @@ impl CodecType {
 mod tests {
     use super::*;
     use crate::{MessagePayload, ConnectRequest};
-    use common::BranchId;
+    use common::{BranchId, TenantId};
     use std::collections::HashMap;
 
     #[test]
@@ -67,6 +67,7 @@ mod tests {
             BranchId::new("test"),
             None,
             MessagePayload::Connect(ConnectRequest {
+                tenant_id: TenantId::new("test_tenant"),
                 branch_id: BranchId::new("test"),
                 api_key: "key".to_string(),
                 version: "1.0.0".to_string(),
