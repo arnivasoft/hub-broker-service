@@ -1,0 +1,17 @@
+[package]
+name = "sync-engine"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+common = { path = "../common" }
+protocol = { path = "../protocol" }
+
+tokio = { workspace = true }
+sqlx = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+tracing = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
