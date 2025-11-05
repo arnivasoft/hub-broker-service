@@ -28,18 +28,18 @@ pub async fn metrics_handler() -> impl IntoResponse {
 
 // Metric recording functions
 pub fn record_connection(tenant_id: &str) {
-    counter!("hub_broker_connections_total", "tenant_id" => tenant_id.to_string()).increment(1);
+    counter!("hub_broker_connections_total", "tenant_id" = tenant_id).increment(1);
 }
 
 pub fn record_disconnection(tenant_id: &str) {
-    counter!("hub_broker_disconnections_total", "tenant_id" => tenant_id.to_string()).increment(1);
+    counter!("hub_broker_disconnections_total", "tenant_id" = tenant_id).increment(1);
 }
 
 pub fn record_message(tenant_id: &str, message_type: &str) {
     counter!(
         "hub_broker_messages_total",
-        "tenant_id" => tenant_id.to_string(),
-        "type" => message_type.to_string()
+        "tenant_id" = tenant_id,
+        "type" = message_type
     )
     .increment(1);
 }
@@ -51,7 +51,7 @@ pub fn record_message_duration(duration_secs: f64) {
 pub fn set_active_connections(tenant_id: &str, count: usize) {
     gauge!(
         "hub_broker_active_connections",
-        "tenant_id" => tenant_id.to_string()
+        "tenant_id" = tenant_id
     )
     .set(count as f64);
 }
@@ -59,8 +59,8 @@ pub fn set_active_connections(tenant_id: &str, count: usize) {
 pub fn record_routing_error(tenant_id: &str, error_type: &str) {
     counter!(
         "hub_broker_routing_errors_total",
-        "tenant_id" => tenant_id.to_string(),
-        "error" => error_type.to_string()
+        "tenant_id" = tenant_id,
+        "error" = error_type
     )
     .increment(1);
 }
